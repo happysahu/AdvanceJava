@@ -38,7 +38,7 @@
 				</tr>
 				<tr>
 					<td></td>
-					<th><input type="submit"></th>
+					<th><input type="submit" name="operation" value="register"></th>
 				</tr>
 			</table>
 		</form>

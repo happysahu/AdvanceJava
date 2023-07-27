@@ -7,9 +7,20 @@
 <title>Welcome</title>
 </head>
 <body>
-<%@ include file="Header.jsp" %>
+	<%@ include file="Header.jsp"%>
 	<form action="WelcomeCtl" method="post">
+		<%
+			String str = (String) request.getAttribute("update");
+		%>
 		<h1>Welcome</h1>
+		<%
+			if (str != null) {
+		%>
+
+		<%=str%>
+		<%
+			}
+		%>
 	</form>
 </body>
 </html>

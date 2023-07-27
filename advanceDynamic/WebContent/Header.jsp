@@ -1,6 +1,6 @@
-<%@page import="in.co.rays.bean.UserBean"%>
+	<%@page import="in.co.rays.bean.UserBean"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,12 +8,20 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%UserBean bean=new UserBean();
-if(bean != null){
-%>
-<%= bean.getFirstName(); %>
-<%} %>
-<h3>Hi, Guest</h3>
-<hr>
+	<%
+		UserBean bean1 = (UserBean) session.getAttribute("user");
+		if (bean1 != null) {
+	%>
+	<h3>Hi,
+	<%=bean1.getFirstName() %></h3>
+	<h3><a href="UserListCtl.do">UserList</a>|<a href="LoginCtl?operation=logout">LogOut</a></h3>
+	<%
+		} else {
+	%>
+	<h3>Hi, Guest</h3>
+	<%
+		}
+	%>
+	<hr>
 </body>
 </html>

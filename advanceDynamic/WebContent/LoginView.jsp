@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%@ include file="Header.jsp" %>
+	<%@ include file="Header.jsp"%>
 	<center>
 		<form action="LoginCtl" method="post">
 
@@ -18,7 +18,6 @@
 			<table>
 				<h1>Login</h1>
 				<%
-					UserBean bean = new UserBean();
 					if (str != null) {
 				%>
 
