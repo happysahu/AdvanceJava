@@ -79,46 +79,12 @@ public class UserRegistrationCtl extends HttpServlet {
 				model.update(bean);
 				session.setAttribute("update", "Update SuccessFully");
 				resp.sendRedirect("UserListCtl.do");
-//				req.setAttribute("update", "Update SuccessFully");
-//				RequestDispatcher rd = req.getRequestDispatcher("Welcome.jsp");
-//				rd.forward(req, resp);
+
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
 	}
-
-//		if (op.equals("update")) {
-//			UserModel model = new UserModel();
-//			UserBean bean = new UserBean();
-//			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-//			String firstName = req.getParameter("firstName");
-//			String lastName = req.getParameter("lastName");
-//			String loginId = req.getParameter("loginId");
-//			String address = req.getParameter("address");
-//			String dob = req.getParameter("dob");
-//			String password = req.getParameter("password");
-//			String id = req.getParameter("id");
-//			bean.setId(Integer.parseInt(id));
-//			bean.setFirstName(firstName);
-//			bean.setLastName(lastName);
-//			bean.setLoginId(loginId);
-//			bean.setAddress(address);
-//			bean.setPassword(password);
-//			bean.setPassword(password);
-//			try {
-//				bean.setDob(sdf.parse(dob));
-//
-//				model.update(bean);
-//				req.setAttribute("update", "Update SuccessFully");
-//				RequestDispatcher rd = req.getRequestDispatcher("Welcome.jsp");
-//				rd.forward(req, resp);
-//
-//			} catch (Exception e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-//		}
 
 }

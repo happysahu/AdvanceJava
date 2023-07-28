@@ -132,4 +132,12 @@ public class UserModel {
 		System.out.println("Data Inserted" + i);
 	}
 
+	public void delete(int id) throws Exception {
+		Connection conn = JDBCDataSource.getConnection();
+		PreparedStatement ps = conn.prepareStatement("DELETE FROM USER WHERE ID=?");
+		ps.setInt(1, id);
+		int i = ps.executeUpdate();
+		System.out.println("Data Deleted" + i);
+	}
+
 }

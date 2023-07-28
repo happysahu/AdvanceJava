@@ -20,8 +20,8 @@ public class LoginCtl extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String op = req.getParameter("operation");
 		if (op != null) {
-			HttpSession session = req.getSession(true);
-			System.out.println("logout: "+session.getId());
+			HttpSession session = req.getSession();
+			System.out.println("logout: " + session.getId());
 			session.invalidate();
 		}
 		resp.sendRedirect("LoginView.jsp");
@@ -37,17 +37,22 @@ public class LoginCtl extends HttpServlet {
 			try {
 				UserBean bean = model.authenticate(loginId, password);
 				if (bean != null) {
-					HttpSession session = req.getSession(true);
+					HttpSession session = req.getSession();
 					System.out.println(session.getId());
 					session.setAttribute("user", bean);
-					resp.sendRedirect("WelcomeCtl.do");
+					String uri = req.getParameter("uri");
+					if (uri.equalsIgnoreCase("null")) {
+						resp.sendRedirect("WelcomeCtl.do");
+					} else {
+						resp.sendRedirect(uri);
+					}
+
 				} else {
 					req.setAttribute("msg", "Login ID & Password is Invalid");
 					RequestDispatcher rd = req.getRequestDispatcher("LoginView.jsp");
 					rd.forward(req, resp);
 				}
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}

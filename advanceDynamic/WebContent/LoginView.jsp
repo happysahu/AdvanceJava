@@ -14,6 +14,7 @@
 
 			<%
 				String str = (String) request.getAttribute("msg");
+				String uri = (String) request.getAttribute("uri");
 			%>
 			<table>
 				<h1>Login</h1>
@@ -40,6 +41,7 @@
 				</tr>
 
 			</table>
+			<input type="hidden" name="uri" value="<%=uri%>">
 		</form>
 	</center>
 </body>

@@ -23,14 +23,16 @@ public class FrontCtl implements Filter {
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
-		HttpServletRequest req=(HttpServletRequest) request;
-		HttpServletResponse resp=(HttpServletResponse) response;
-		HttpSession session=req.getSession();
-		if(session.getAttribute("user") == null) {
-			req.setAttribute("msg", "Session Expired...!!!! Please Login Again (.)(.)");
-			RequestDispatcher rd=req.getRequestDispatcher("LoginView.jsp");
+		HttpServletRequest req = (HttpServletRequest) request;
+		HttpServletResponse resp = (HttpServletResponse) response;
+		String uri = req.getRequestURI();
+		HttpSession session = req.getSession();
+		if (session.getAttribute("user") == null) {
+			req.setAttribute("uri", uri);
+			req.setAttribute("msg", "Session Expired...!!!! Please Login Again ");
+			RequestDispatcher rd = req.getRequestDispatcher("LoginView.jsp");
 			rd.forward(req, resp);
-		}else {
+		} else {
 			chain.doFilter(request, response);
 		}
 	}

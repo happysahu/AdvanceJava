@@ -1,3 +1,4 @@
+<%@ page errorPage="ErrorView.jsp"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -10,6 +11,9 @@
 </head>
 <body>
 	<%@include file="Header.jsp"%>
+	<%
+		String str = (String) session.getAttribute("update");
+	%>
 	<center>
 		<h1>User List</h1>
 		<form action="UserListCtl.do" method="post">
@@ -18,17 +22,20 @@
 				<td></td>
 				<input type="date" name="dob">
 				</td>
-				<th><input type="submit" name="operation" value="Search"></th>
+				<th><input type="submit" name="operation" value="Search">
+					<input type="submit" name="operation" value="delete"></th>
 			</tr>
 			<%
 				Integer pageNo = (Integer) request.getAttribute("pageNo");
 				List list = (List) request.getAttribute("list");
 				Iterator it = list.iterator();
+				int index = ((pageNo - 1) * 5) + 1;
 			%>
 			<table border="1">
 
 				<tr>
-					<th>Id</th>
+					<th>Select</th>
+					<th>Serial No.</th>
 					<th>First Name</th>
 					<th>Last Name</th>
 					<th>Login Id</th>
@@ -42,7 +49,8 @@
 						UserBean bean = (UserBean) it.next();
 				%>
 				<tr>
-					<th><%=bean.getId()%></th>
+					<th><input type="checkbox" name="id" value="<%=bean.getId()%>"></th>
+					<th><%=index++%></th>
 					<th><%=bean.getFirstName()%></th>
 					<th><%=bean.getLastName()%></th>
 					<th><%=bean.getLoginId()%></th>
@@ -59,7 +67,13 @@
 			<th><input type="submit" name="operation" value="previous"></th>
 			<th><input type="submit" name="operation" value="next"></th>
 		</form>
-
+		<%
+			if (str != null) {
+		%>
+		<h1><%=str%></h1>
+		<%
+			}
+		%>
 	</center>
 </body>
 </html>
